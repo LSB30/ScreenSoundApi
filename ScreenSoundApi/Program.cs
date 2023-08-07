@@ -8,18 +8,20 @@ using (HttpClient client = new HttpClient())
     {
         string resposta = await client.GetStringAsync("https://guilhermeonrails.github.io/api-csharp-songs/songs.json");
         var musicas = JsonSerializer.Deserialize<List<Music>>(resposta)!;
+        musicas[0].ExibirFichaTecnica();
+        LinqFilter.FiltrarPeloIndex(musicas, 1);
         //LinqFilter.FiltrarTodosOsGenerosMusicais(musicas);
         //LinqOrder.ExibirListaDeArtistaOrdenados(musicas);
         //LinqFilter.FiltrarArtistasPeloGeneroMusical(musicas, "rock");
-        LinqFilter.FiltrarMusicasDoArtista(musicas, "Lil Peep");
+        //LinqFilter.FiltrarMusicasDoArtista(musicas, "Lil Peep");
 
-        var musicasPreferiasDoLucas = new MusicasPreferidas("Lucas");
-        musicasPreferiasDoLucas.AdicionarMusicasFavoritas(musicas[30]);
-        musicasPreferiasDoLucas.AdicionarMusicasFavoritas(musicas[7]);
-        musicasPreferiasDoLucas.AdicionarMusicasFavoritas(musicas[10]);
-        musicasPreferiasDoLucas.AdicionarMusicasFavoritas(musicas[777]);
+        //var musicasPreferiasDoLucas = new MusicasPreferidas("Lucas");
+        //musicasPreferiasDoLucas.AdicionarMusicasFavoritas(musicas[30]);
+        //musicasPreferiasDoLucas.AdicionarMusicasFavoritas(musicas[7]);
+        //musicasPreferiasDoLucas.AdicionarMusicasFavoritas(musicas[10]);
+        //musicasPreferiasDoLucas.AdicionarMusicasFavoritas(musicas[777]);
 
-        musicasPreferiasDoLucas.ExibirMusicasFavoritas();
+        //musicasPreferiasDoLucas.ExibirMusicasFavoritas();
 
         //var musicasPreferiasDaJasna = new MusicasPreferidas("Jasna");
         //musicasPreferiasDaJasna.AdicionarMusicasFavoritas(musicas[330]);
@@ -29,7 +31,7 @@ using (HttpClient client = new HttpClient())
 
         //musicasPreferiasDaJasna.ExibirMusicasFavoritas();
 
-        musicasPreferiasDoLucas.GerarArquivoJson();
+        //musicasPreferiasDoLucas.GerarArquivoJson();
 
     }
     catch (Exception ex) {
